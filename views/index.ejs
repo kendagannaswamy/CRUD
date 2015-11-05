@@ -1,0 +1,97 @@
+<html>
+	<head>
+        <title>Shopping Cart</title>
+        <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">    	
+        <link href="/stylesheets/style.css" rel="stylesheet" type="text/css">
+		<script src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/javascripts/jquery-1.9.1.js"></script>	
+        <script type="text/javascript" src="/javascripts/script.js"></script>	
+		
+    </head>
+<body>
+<div class="outer" class="container">
+<div class="masthead">
+
+<div class="jumbotron">
+    <h1>My first SHOPPING LIST website!</h1>      
+    <p>Add your shoping item and Quntity below.... </p>      
+  
+  </div>
+  		<!--insertion table form-->
+			<table class="addT" id="addT">
+            <form id="form">
+				<tr class="col-md-4">
+			 
+					<th> <label for="name">Shopping Item </label></th>
+					<td><input type="text"  class="form-control" name="name" id="txtnm"  /></td>
+
+				</tr>
+				<tr class="col-md-4">
+					<th> <label for="name">Quantity</label></th>
+					<td><input type="text"  class="form-control" name="qty" id="txtqty" /></td>
+				</tr>
+				<tr class="col-md-4">
+					<td><button type="button" class="btn btn-success btn-arrow-left" id="add">Add</button></td>			
+				</tr>
+                </form>
+			</table>
+		 	<br/>
+		 	<br/>
+
+			
+
+        <h3 class="text-muted">Shopping  Cart</h3></div>
+       
+		<font style = "color : red" id="error"><%=error%></font>
+		<div class="cart">
+            <br />
+			<table class="table table-hover table-bordered"  id="table">
+				<thead>	
+					<tr>
+						<th>Item</th> 
+						<th>Quantity</th>
+                        <th>Delete Item</th>
+						<th>Edit Item</th>
+					</tr>
+				</thead>
+
+				<tbody class="container">
+					<!--render table with items data -->
+					<% for(var i=0; i<items.length; i++) { %>
+						<tr id="<%= items[i]._id %>">						
+							<td class='name' id='name'><%= items[i].name %></td>
+							<td class='qty' id='qty'><%= items[i].qty %></td>
+							<td><a href="#" onclick="removeData(this)" data='<%= items[i]._id %>' class="btn btn-sm btn-danger" name="remove">Delete item</a></td>
+							<td><a i=<%=i%> data="<%= items[i]._id %>" href="#" class="btnEdit" onclick='editData(this)'>Edit</a></td>
+						</tr>
+					<% } %>
+				</tbody>
+			</table>
+			<br />
+			
+			 <!--updation table form-->
+			<table class="updateT" id="updateT">
+            <form id="form2">
+				<tr class="col-md-4">
+					<th>Shopping Item </th>
+					<td><input type="text"  class="form-control" name="name" id="txtnm1"  /></td>
+				</tr>
+				<tr class="col-md-4">
+					<th>Quantity </th>
+					<td><input type="text"  class="form-control" name="qty" id="txtqty1" /></td>
+				</tr>
+				<tr class="col-md-4">
+					<td><input type="button" class="btn btn-sm btn-danger" value="Update" id="update" />&nbsp;
+					<input type="button"  class="btn btn-sm btn-danger" value="Cancel" id="cancel" /></td><tr/>
+					<td><input type="hidden" name="hide" id="hide" value=""></td>				
+				</tr>
+                </form>
+			</table>	
+					
+		</div>
+	</div>
+  
+</body>
+</html>
+
+  
